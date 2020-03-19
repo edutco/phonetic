@@ -46,7 +46,7 @@ namespace phonetic {
                     return words[i];
             }
         }
-        throw "Did not find the word '"+word+"' in the text";
-        return "not found";
+        throw  runtime_error( "Did not find the word '"+word+"' in the text");
+        return NULL;
     }
 }

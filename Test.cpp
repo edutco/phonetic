@@ -145,44 +145,40 @@ TEST_CASE("Test replacement of any possibility") {
 TEST_CASE("Test of Incorrect inputs") {
     string text =  "You only live once but if you do it right once is enough";
    
+    
     try {
-cout << phonetic::find(text, "once is") << endl;   // should throw an exception
-} catch (exception ex) {
-cout << "   caught exception: " << ex.what() << endl;
-}
-try {
-cout << phonetic::find(text, "once,") << endl;   // should throw an exception , invallid character
-} catch (exception ex) {
-cout << "   caught exception: " << ex.what() << endl;
-}
+        cout << phonetic::find(text, "onceo") << endl;   // should throw an exception , invallid character
+    } catch (runtime_error ex) {
+        cout << "   caught exception: " << ex.what() << endl;
+    }
     try {
-cout << phonetic::find(text, "happ") << endl;   // should throw an exception - "happ" is not a full word in the sentence
-} catch (exception ex) {
-cout << "   caught exception: " << ex.what() << endl;  // should print "Did not find the word 'happ' in the text"
-}
-try {
-cout << phonetic::find(text, "yo") << endl;   // should throw an exception - "yo" is not a full word in the sentence
-} catch (exception ex) {
-cout << "   caught exception: " << ex.what() << endl;  // should print "Did not find the word 'yo' in the text"
-}
-try {
-cout << phonetic::find(text, "onry") << endl;   // should throw an exception
-} catch (exception ex) {
-cout << "   caught exception: " << ex.what() << endl;  // should print "Did not find the word 'onry' in the text"
-}
-try {
-cout << phonetic::find(text, "lvee") << endl;   // should throw an exception
-} catch (exception ex) {
-cout << "   caught exception: " << ex.what() << endl;  // should print "Did not find the word 'lvee' in the text"
-}
-try {
-cout << phonetic::find(text, "umqe") << endl;   // should throw an exception
-} catch (exception ex) {
-cout << "   caught exception: " << ex.what() << endl;  // should print "Did not find the word 'umqe' in the text"
-}
-try {
-cout << phonetic::find(text, "BQT") << endl;   // should throw an exception
-} catch (exception ex) {
-cout << "   caught exception: " << ex.what() << endl;  // should print "Did not find the word 'BQT' in the text"
-}
+        cout << phonetic::find(text, "happ") << endl;   // should throw an exception - "happ" is not a full word in the sentence
+    } catch (runtime_error ex) {
+        cout << "   caught exception: " << ex.what() << endl;  // should print "Did not find the word 'happ' in the text"
+    }
+    try {
+        cout << phonetic::find(text, "yo") << endl;   // should throw an exception - "yo" is not a full word in the sentence
+    } catch (runtime_error ex) {
+        cout << "   caught exception: " << ex.what() << endl;  // should print "Did not find the word 'yo' in the text"
+    }
+    try {
+        cout << phonetic::find(text, "onry") << endl;   // should throw an exception
+    } catch (runtime_error ex) {
+        cout << "   caught exception: " << ex.what() << endl;  // should print "Did not find the word 'onry' in the text"
+    }
+    try {
+        cout << phonetic::find(text, "lvee") << endl;   // should throw an exception
+    } catch (runtime_error ex) {
+        cout << "   caught exception: " << ex.what() << endl;  // should print "Did not find the word 'lvee' in the text"
+    }
+    try {
+        cout << phonetic::find(text, "umqe") << endl;   // should throw an exception
+    } catch (runtime_error ex) {
+        cout << "   caught exception: " << ex.what() << endl;  // should print "Did not find the word 'umqe' in the text"
+    }
+    try {
+        cout << phonetic::find(text, "BQT") << endl;   // should throw an exception
+    } catch (runtime_error ex) {
+        cout << "   caught exception: " << ex.what() << endl;  // should print "Did not find the word 'BQT' in the text"
+    }
 }
