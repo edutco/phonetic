@@ -1,15 +1,14 @@
 #include "doctest.h"
 #include "PhoneticFinder.hpp"
+using namespace std;
+#include <string>
 using namespace phonetic;
 
-#include <string>
-using namespace std;
+// Id of collaborators 208825539 207950577
 
-
-
-TEST_CASE("Test replacement of p and b") {
+TEST_CASE("Test replacement of p, f and b") {
     string text = "xxx happy yyy";
-    CHECK(find(text, "happy") == string("happy"));
+    CHECK(find(text, "haffy") == string("happy"));
     CHECK(find(text, "habby") == string("happy"));
     CHECK(find(text, "hapby") == string("happy"));
     CHECK(find(text, "habpy") == string("happy"));
@@ -22,17 +21,17 @@ TEST_CASE("Test replacement of lower-case and upper-case") {
     CHECK(find(text, "HAPPI") == string("Happi"));
     CHECK(find(text, "HaPpI") == string("Happi"));
 }
-
+/** all other possible permutations*/
+/**c-k-q    b-p-f   d-t     o-u     v-w     g-j     s-z     i-y     and of course lower case and upper case changes*/
 TEST_CASE("Test replacement of any possibility") {
     string text = "qhanJe yUur Dhuoghts anT you change yuOr vorlt";
-    CHECK(find(text, "Change") == string("qhanJe"));
-    CHECK(find(text, "your") == string("yUur"));
-    CHECK(find(text, "thoughts") == string("Dhuoghts"));
-    CHECK(find(text, "and") == string("anT"));
+    CHECK(find(text, "Change") == string("qhanJe")); //c-q, g-j
+    CHECK(find(text, "your") == string("yUur")); //o-u
+    CHECK(find(text, "thoughts") == string("Dhuoghts")); //t-d 
+    CHECK(find(text, "and") == string("anT"));//t-d
     CHECK(find(text, "you") == string("you"));
-    CHECK(find(text, "change") == string("qhanJe"));
-    CHECK(find(text, "your") == string("yUur"));
-    CHECK(find(text, "world") == string("vorlt"));
+    CHECK(find(text, "change") == string("qhanJe"));//c-q g-j
+    CHECK(find(text, "world") == string("vorlt")); //w-v d-t
     
     text = "dhUse Vho realize DhEIr Polly arE not true BoolZ";
     CHECK(find(text, "Those") == string("dhUse"));
@@ -65,25 +64,24 @@ TEST_CASE("Test replacement of any possibility") {
     CHECK(find(text, "is") == string("IS"));
     CHECK(find(text, "done") == string("Tone"));
 
-    text = "Keep your eyes on the stars and your feet on the ground";
-    CHECK(find(text, "Keep") == string("Keep"));
-    CHECK(find(text, "your") == string("your"));
+    text = "ceep iour eyes on the stars and your feet on the ground";
+    CHECK(find(text, "Keep") == string("ceep")); //c-k
+    CHECK(find(text, "your") == string("iour"));
     CHECK(find(text, "eyes") == string("eyes"));
     CHECK(find(text, "on") == string("on"));
     CHECK(find(text, "the") == string("the"));
     CHECK(find(text, "stars") == string("stars"));
     CHECK(find(text, "and") == string("and"));
-    CHECK(find(text, "your") == string("your"));
     CHECK(find(text, "feet") == string("feet"));
     CHECK(find(text, "on") == string("on"));
     CHECK(find(text, "the") == string("the"));
     CHECK(find(text, "ground") == string("ground"));
    
-    text = "Life Is A Cuestyon ant hUv ve live Id iS UOr answer";
+    text = "Life Is A Kuestyon ant hUv ve live Id iS UOr answer";
     CHECK(find(text, "Life") == string("Life"));
     CHECK(find(text, "is") == string("Is"));
     CHECK(find(text, "a") == string("A"));
-    CHECK(find(text, "question") == string("Cuestyon"));
+    CHECK(find(text, "question") == string("Kuestyon"));
     CHECK(find(text, "and") == string("ant"));
     CHECK(find(text, "how") == string("hUv"));
     CHECK(find(text, "we") == string("ve"));
@@ -148,37 +146,37 @@ TEST_CASE("Test of Incorrect inputs") {
     
     try {
         cout << phonetic::find(text, "onceo") << endl;   // should throw an exception , invallid character
-    } catch (runtime_error ex) {
+    } catch (exception &ex) {
         cout << "   caught exception: " << ex.what() << endl;
     }
     try {
         cout << phonetic::find(text, "happ") << endl;   // should throw an exception - "happ" is not a full word in the sentence
-    } catch (runtime_error ex) {
+    } catch (exception &ex) {
         cout << "   caught exception: " << ex.what() << endl;  // should print "Did not find the word 'happ' in the text"
     }
     try {
         cout << phonetic::find(text, "yo") << endl;   // should throw an exception - "yo" is not a full word in the sentence
-    } catch (runtime_error ex) {
+    } catch (exception &ex) {
         cout << "   caught exception: " << ex.what() << endl;  // should print "Did not find the word 'yo' in the text"
     }
     try {
         cout << phonetic::find(text, "onry") << endl;   // should throw an exception
-    } catch (runtime_error ex) {
+    } catch (exception & ex) {
         cout << "   caught exception: " << ex.what() << endl;  // should print "Did not find the word 'onry' in the text"
     }
     try {
         cout << phonetic::find(text, "lvee") << endl;   // should throw an exception
-    } catch (runtime_error ex) {
+    } catch (exception & ex) {
         cout << "   caught exception: " << ex.what() << endl;  // should print "Did not find the word 'lvee' in the text"
     }
     try {
         cout << phonetic::find(text, "umqe") << endl;   // should throw an exception
-    } catch (runtime_error ex) {
+    } catch (exception &ex) {
         cout << "   caught exception: " << ex.what() << endl;  // should print "Did not find the word 'umqe' in the text"
     }
     try {
         cout << phonetic::find(text, "BQT") << endl;   // should throw an exception
-    } catch (runtime_error ex) {
+    } catch (exception &ex) {
         cout << "   caught exception: " << ex.what() << endl;  // should print "Did not find the word 'BQT' in the text"
     }
 }
