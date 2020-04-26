@@ -139,6 +139,7 @@ TEST_CASE("Test replacement of any possibility") {
     CHECK(find(text, "right") == string("ryghd"));
     CHECK(find(text, "is") == string("is"));
     CHECK(find(text, "enough") == string("enUugh"));
+    
 }
 
 TEST_CASE("Test of Incorrect inputs") {
